@@ -7,6 +7,7 @@ resource "aws_apigatewayv2_api" "sac_apigwv2_api" {
 
   cors_configuration {
     allow_methods = ["*"]
+  # oak9: CORS configuration is allowing ['*'] requests
   }
 }
 
@@ -30,6 +31,7 @@ resource "aws_apigatewayv2_integration" "sac_apigwv2_integration" {
   api_id           = aws_apigatewayv2_api.sac_apigwv2_api.id
   integration_type = "HTTP_PROXY"
   integration_method = "PATCH"
+  # oak9: API is allowing PATCH requests
   connection_type = "INTERNET"
   integration_uri = aws_lb_listener.elbv2_listener.arn
 }
